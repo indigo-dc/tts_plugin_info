@@ -9,6 +9,7 @@ import string
 import sys
 import traceback
 import time
+import os
 
 VERSION="1.1.0"
 
@@ -70,13 +71,25 @@ def revoke_info():
     return json.dumps({'result': 'ok'})
 
 
+def get_jobject():
+        Data = ""
+        if 'WATTS_PARAMETER' in os.environ:
+            Data = os.environ['WATTS_PARAMETER']
+        elif len(sys.argv) == 2:
+            Data = sys.argv[1]
+        else:
+            return None
+        Json = str(Data)+ '=' * (4 - len(Data) % 4)
+        JObject = json.loads(str(base64.urlsafe_b64decode(Json)))
+        return JObject
+
+
 def main():
     try:
         UserMsg = "Internal error, please contact the administrator"
 
-        if len(sys.argv) == 2:
-            Json = str(sys.argv[1])+ '=' * (4 - len(sys.argv[1]) % 4)
-            JObject = json.loads(str(base64.urlsafe_b64decode(Json)))
+        JObject = get_jobject()
+        if JObject != None:
             Action = JObject['action']
             if Action == "parameter":
                 print list_params()
