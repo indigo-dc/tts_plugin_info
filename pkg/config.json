@@ -1,0 +1,19 @@
+{
+    "pkg" : {
+        "name" : "watts-plugin-info",
+        "short_desc" : "WaTTS Info Plugin",
+        "long_desc" : "A simple plugin for WaTTS, displaying all the informations the plugin gets",
+        "version" : "1.1.0",
+        "vendor" : "INDIGO DataCloud",
+        "maintainer" : "Joshua Bachmeier <uwdkl@student.kit.edu>"
+    },
+    "deps" : {
+        "arch" : ["python2"],
+        "deb" : ["python"],
+        "rpm" : ["python"]
+    },
+    "archive" : {
+        "name" : "tts_plugin_info",
+        "targz" : "https://github.com/indigo-dc/tts_plugin_info/archive/v1.1.0.tar.gz"
+    }
+}
